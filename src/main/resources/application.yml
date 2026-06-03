@@ -1,0 +1,56 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      server:
+        webmvc:
+          # Rotas explicitas: preservam os mesmos paths do monolito (/api/...)
+          # StripPrefix=1 remove o /api antes de encaminhar ao microservico.
+          routes:
+            - id: ms-auth
+              uri: lb://ms-auth
+              predicates:
+                - Path=/api/auth/**
+              filters:
+                - StripPrefix=1
+            - id: ms-aluno
+              uri: lb://ms-aluno
+              predicates:
+                - Path=/api/alunos/**
+              filters:
+                - StripPrefix=1
+            - id: ms-professor
+              uri: lb://ms-professor
+              predicates:
+                - Path=/api/professores/**
+              filters:
+                - StripPrefix=1
+            - id: ms-projeto
+              uri: lb://ms-projeto
+              predicates:
+                - Path=/api/projetos/**
+              filters:
+                - StripPrefix=1
+            - id: ms-grupo
+              uri: lb://ms-grupo
+              predicates:
+                - Path=/api/grupos/**
+              filters:
+                - StripPrefix=1
+            - id: ms-notificacao
+              uri: lb://ms-notificacao
+              predicates:
+                - Path=/api/notificacoes/**
+              filters:
+                - StripPrefix=1
+
+eureka:
+  client:
+    service-url:
+      defaultZone: ${EUREKA_URL:http://localhost:8761/eureka/}
+  instance:
+    prefer-ip-address: true
