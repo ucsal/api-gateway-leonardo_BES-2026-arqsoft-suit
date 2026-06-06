@@ -20,17 +20,14 @@
 	</properties>
 
 	<dependencies>
-		<!-- Gateway baseado em Servlet/WebMVC (mesma stack dos microservicos) -->
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-gateway-server-webmvc</artifactId>
 		</dependency>
-		<!-- Cliente Eureka: descobre os microservicos pelo nome (lb://) -->
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
 		</dependency>
-		<!-- LoadBalancer para resolver lb://service-id -->
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-loadbalancer</artifactId>

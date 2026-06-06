@@ -8,8 +8,6 @@ spring:
     gateway:
       server:
         webmvc:
-          # Rotas explicitas: preservam os mesmos paths do monolito (/api/...)
-          # StripPrefix=1 remove o /api antes de encaminhar ao microservico.
           routes:
             - id: ms-auth
               uri: lb://ms-auth
